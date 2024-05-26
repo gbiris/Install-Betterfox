@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/bash env
 rm -- "$0"
 pkill firefox
 directory=$(find ~/Library/Application Support/Firefox/Profiles/ -type d -name '*default-release*' -print -quit)
