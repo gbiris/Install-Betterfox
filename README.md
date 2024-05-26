@@ -1,3 +1,4 @@
+#### macOS
 **1.** Copy and paste into your terminal:
 
 ```
