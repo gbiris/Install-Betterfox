@@ -1,3 +1,5 @@
-# InstallBetterfox
+**1.** Copy and paste into your terminal:
 
-https://raw.githubusercontent.com/mylesotoole/InstallBetterfox/main/InstallBetterfox
+```
+curl -O https://raw.githubusercontent.com/mylesotoole/InstallBetterfox/main/InstallBetterfox && chmod +x NoiseTorchInstaller && ./NoiseTorchInstaller
+```
