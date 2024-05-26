@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+rm -- "$0"
+pkill firefox
+directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
+if [ -n "$directory" ]; then
+  cd "$directory" || exit 1
+  curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
+else
+  echo "Firefox directory not found."
+fi
