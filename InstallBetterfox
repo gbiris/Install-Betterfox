@@ -10,8 +10,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         rm -f user.js
         curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
         pkill firefox
-        clear
-        echo "Betterfox installed or updated successfully."
     else
         echo "Firefox directory not found."
     fi
@@ -23,8 +21,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         rm -f user.js
         curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
         pkill firefox
-        clear
-        echo "Betterfox installed or updated successfully."
     else
         echo "Firefox directory not found."
     fi
