@@ -7,9 +7,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
     if [ -n "$directory" ]; then
         cd "$directory" || exit 1
-        rm -f user.js
         curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
-        pkill firefox
+        clear
+        echo "Betterfox installed or updated successfully"
     else
         echo "Firefox directory not found."
     fi
@@ -20,7 +20,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         cd "$directory" || exit 1
         rm -f user.js
         curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
-        pkill firefox
+        pkill
+        clear
+        echo "Betterfox installed or updated successfully"
     else
         echo "Firefox directory not found."
     fi
