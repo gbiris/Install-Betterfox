@@ -1,24 +1,18 @@
 #!/bin/sh
 rm -- "$0"
 
-# Determine the operating system
-os=$(uname)
-
-case "$os" in
-    Linux)
-        echo "Running on Linux"
-        pkill firefox
-        directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
-        ;;
-    Darwin)
-        echo "Running on macOS"
-        directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
-        ;;
-    *)
-        echo "Unknown or unsupported operating system"
-        exit 1
-        ;;
-esac
+# Check if Firefox profile directories exist
+if [ -d "$HOME/.mozilla/firefox" ]; then
+    echo "Running on Linux"
+    pkill firefox
+    directory=$(find "$HOME/.mozilla/firefox/" -type d -name '*default-release*' -print -quit)
+elif [ -d "$HOME/Library/Application Support/Firefox/Profiles" ]; then
+    echo "Running on macOS"
+    directory=$(find "$HOME/Library/Application Support/Firefox/Profiles" -type d -name '*default-release*' -print -quit)
+else
+    echo "Unknown or unsupported operating system"
+    exit 1
+fi
 
 if [ -n "$directory" ]; then
     cd "$directory" || exit 1
