@@ -4,17 +4,21 @@ rm -- "$0"
 # Determine the operating system
 os=$(uname)
 
-if [ "$os" = "Linux" ]; then
-    echo "Running on Linux"
-    pkill firefox
-    directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
-elif [ "$os" = "Darwin" ]; then
-    echo "Running on macOS"
-    directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
-else
-    echo "Unknown or unsupported operating system"
-    exit 1
-fi
+case "$os" in
+    Linux)
+        echo "Running on Linux"
+        pkill firefox
+        directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
+        ;;
+    Darwin)
+        echo "Running on macOS"
+        directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
+        ;;
+    *)
+        echo "Unknown or unsupported operating system"
+        exit 1
+        ;;
+esac
 
 if [ -n "$directory" ]; then
     cd "$directory" || exit 1
