@@ -1,7 +1,10 @@
 #!/bin/sh
 rm -- "$0"
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+# Determine the operating system
+os=$(uname)
+
+if [ "$os" = "Linux" ]; then
     echo "Running on Linux"
     pkill firefox
     directory=$(find ~/.mozilla/firefox/ -type d -name '*default-release*' -print -quit)
@@ -13,7 +16,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     else
         echo "Firefox directory not found."
     fi
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+elif [ "$os" = "Darwin" ]; then
     echo "Running on macOS"
     directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
     if [ -n "$directory" ]; then
