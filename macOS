@@ -1,5 +1,6 @@
 #!/bin/sh
 rm -- "$0"
+cd ~/
 
 # Find all directories matching the pattern
 find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' | while read -r directory; do
