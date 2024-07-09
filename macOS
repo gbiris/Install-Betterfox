@@ -1,13 +1,24 @@
 #!/bin/sh
 rm -- "$0"
 
-echo "Running on macOS"
-directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
-if [ -n "$directory" ]; then
-    cd "$directory" || exit 1
-    rm -f user.js
-    curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
-    pkill firefox
-else
-    echo "Firefox directory not found."
-fi
+# Find all directories matching the pattern
+directories=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*')
+
+# Iterate over each directory found
+for directory in $directories; do
+    if [ -n "$directory" ]; then
+        # Move into the directory
+        cd "$directory" || exit 1
+
+        # Remove existing user.js file
+        rm -f user.js
+
+        # Download the new user.js file
+        curl -O https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js
+
+        # Restart Firefox
+        pkill firefox
+    else
+        echo "Firefox directory not found."
+    fi
+done
