@@ -2,10 +2,7 @@
 rm -- "$0"
 
 # Find all directories matching the pattern
-directories=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*')
-
-# Iterate over each directory found
-for directory in $directories; do
+find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' | while read -r directory; do
     if [ -n "$directory" ]; then
         # Move into the directory
         cd "$directory" || exit 1
