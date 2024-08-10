@@ -2,7 +2,7 @@
 rm -- "$0"
 
 echo "Running on macOS"
-directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*default-release*' -print -quit)
+directory=$(find ~/Library/Application\ Support/Firefox/Profiles -type d -name '*Betterfox*' -print -quit)
 if [ -n "$directory" ]; then
     cd "$directory" || exit 1
     rm -f user.js
